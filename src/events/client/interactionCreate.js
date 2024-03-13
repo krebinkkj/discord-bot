@@ -12,7 +12,7 @@ module.exports = async (client, interaction) => {
         banSchema.findOne({ User: interaction.user.id }, async (err, data) => {
             if (data) {
                 return client.errNormal({
-                    error: "You have been banned by the developers of this bot",
+                    error: "Você foi banido pelo meu desenvolvedor!",
                     type: 'ephemeral'
                 }, interaction);
             }
