@@ -1,13 +1,13 @@
 /*
-* This file adds a developer badge to a user 
-* Only use this if you want to add a badge to a user
-* If someone tells you to use this to add their id, they are lying 
-* 
-* @string member - The member you want to add the badge to
-*/
+ * This file adds a developer badge to a user 
+ * Only use this if you want to add a badge to a user
+ * If someone tells you to use this to add their id, they are lying 
+ * 
+ * @string member - The member you want to add the badge to
+ */
 const chalk = require('chalk');
 if (!process.argv[2]) {
-    console.log(chalk.red(`[ERROR]`), chalk.white(`>>`), chalk.red(`Developer Badge`), chalk.white(`>>`), chalk.red(`Please provide a member id!`))
+    console.log(chalk.red(`[ERROR]`), chalk.white(`>>`), chalk.red(`Developer Badge`), chalk.white(`>>`), chalk.red(`Por favor declare um id valido!`))
     process.exit(1);
 }
 require('dotenv').config('./.env');

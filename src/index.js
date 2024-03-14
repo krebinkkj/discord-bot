@@ -47,8 +47,8 @@ if (process.env.TOPGG_TOKEN) {
 console.clear();
 console.log(chalk.blue(chalk.bold(`System`)), (chalk.white(`>>`)), (chalk.green(`Starting up`)), (chalk.white(`...`)))
 console.log(`\u001b[0m`)
-console.log(chalk.red(`© CorwinDev | 2021 - ${new Date().getFullYear()}`))
-console.log(chalk.red(`All rights reserved`))
+console.log(chalk.red(`© Krebinkkj | 2021 - ${new Date().getFullYear()}`))
+console.log(chalk.red(`Todos direitos reservados.`))
 console.log(`\u001b[0m`)
 console.log(`\u001b[0m`)
 console.log(chalk.blue(chalk.bold(`System`)), (chalk.white(`>>`)), chalk.red(`Version ${require(`${process.cwd()}/package.json`).version}`), (chalk.green(`loaded`)))
@@ -56,8 +56,8 @@ console.log(`\u001b[0m`);
 
 manager.on('shardCreate', shard => {
     let embed = new Discord.EmbedBuilder()
-        .setTitle(`🆙・Launching shard`)
-        .setDescription(`A shard has just been launched`)
+        .setTitle(`🆙・Iniciando shard`)
+        .setDescription(`A shard está sendo inicializada`)
         .setFields([
             {
                 name: "🆔┆ID",
@@ -65,8 +65,8 @@ manager.on('shardCreate', shard => {
                 inline: true
             },
             {
-                name: `📃┆State`,
-                value: `Starting up...`,
+                name: `📃┆Status`,
+                value: `Inicializando...`,
                 inline: true
             }
         ])
@@ -81,7 +81,7 @@ manager.on('shardCreate', shard => {
 
     shard.on("death", (process) => {
         const embed = new Discord.EmbedBuilder()
-            .setTitle(`🚨・Closing shard ${shard.id + 1}/${manager.totalShards} unexpectedly`)
+            .setTitle(`🚨・Desligando shard ${shard.id + 1}/${manager.totalShards} unexpectedly`)
             .setFields([
                 {
                     name: "🆔┆ID",
