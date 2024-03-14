@@ -9,15 +9,15 @@ module.exports = async (client) => {
     });
 
     console.log(`\u001b[0m`);
-    console.log(chalk.blue(chalk.bold(`System`)), (chalk.white(`>>`)), chalk.red(`Shard #${client.shard.ids[0] + 1}`), chalk.green(`is ready!`))
-    console.log(chalk.blue(chalk.bold(`Bot`)), (chalk.white(`>>`)), chalk.green(`Started on`), chalk.red(`${client.guilds.cache.size}`), chalk.green(`servers!`))
+    console.log(chalk.blue(chalk.bold(`System`)), (chalk.white(`>>`)), chalk.red(`Shard #${client.shard.ids[0] + 1}`), chalk.green(`está pronta!`))
+    console.log(chalk.blue(chalk.bold(`Bot`)), (chalk.white(`>>`)), chalk.green(`Iniciada em`), chalk.red(`${client.guilds.cache.size}`), chalk.green(`servidores!`))
 
     let embed = new Discord.EmbedBuilder()
-        .setTitle(`🆙・Finishing shard`)
-        .setDescription(`A shard just finished`)
+        .setTitle(`🆙・Finalizando shard`)
+        .setDescription(`Shard foi finalizada`)
         .addFields(
             { name: "🆔┆ID", value: `${client.shard.ids[0] + 1}/${client.options.shardCount}`, inline: true },
-            { name: "📃┆State", value: `Ready`, inline: true },
+            { name: "📃┆State", value: `Pronta`, inline: true },
         )
         .setColor(client.config.colors.normal)
     startLogs.send({
@@ -37,11 +37,11 @@ module.exports = async (client) => {
                     statuttext = process.env.DISCORD_STATUS.split(', ');
                 } else {
                     statuttext = [
-                        `・❓┆/help`,
-                        `・💻┆${totalGuilds} servers`,
-                        `・📨┆discord.gg/corwindev`,
-                        `・🎉┆400+ commands`,
-                        `・🏷️┆Version ${require(`${process.cwd()}/package.json`).version}`
+                        `・❓┆ **/help**`,
+                        `・💻┆ Em ${totalGuilds} servidores`,
+                        `・📨┆ [Suporte](discord.gg/corwindev)`,
+                        `・🎉┆ Com mais de 400+ comandos `,
+                        `・🏷️┆ Versão ${require(`${process.cwd()}/package.json`).version}`
                     ];
                 }
                 const randomText = statuttext[Math.floor(Math.random() * statuttext.length)];

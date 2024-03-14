@@ -6,10 +6,10 @@ const axios = require('axios');
 const { version } = require('.././package.json');
 axios.get('https://api.github.com/repos/CorwinDev/Discord-Bot/releases/latest').then(res => {
     if (res.data.tag_name !== version) {
-        console.log(chalk.red.bgYellow(`Your bot is not up to date! Please update to the latest version!`, version + ' -> ' + res.data.tag_name));
+        console.log(chalk.red.bgYellow(`Seu bot não está atualizado!`, version + ' -> ' + res.data.tag_name));
     }
 }).catch(err => {
-    console.log(chalk.red.bgYellow(`Failed to check if bot is up to date!`));
+    console.log(chalk.red.bgYellow(`Falha ao checar se o bot está atualizado!`));
 });
 
 
@@ -45,13 +45,13 @@ if (process.env.TOPGG_TOKEN) {
     AutoPoster(process.env.TOPGG_TOKEN, manager);
 }
 console.clear();
-console.log(chalk.blue(chalk.bold(`System`)), (chalk.white(`>>`)), (chalk.green(`Starting up`)), (chalk.white(`...`)))
+console.log(chalk.blue(chalk.bold(`System`)), (chalk.white(`>>`)), (chalk.green(`Inicializando...`)), (chalk.white(`...`)))
 console.log(`\u001b[0m`)
 console.log(chalk.red(`© Krebinkkj | 2021 - ${new Date().getFullYear()}`))
 console.log(chalk.red(`Todos direitos reservados.`))
 console.log(`\u001b[0m`)
 console.log(`\u001b[0m`)
-console.log(chalk.blue(chalk.bold(`System`)), (chalk.white(`>>`)), chalk.red(`Version ${require(`${process.cwd()}/package.json`).version}`), (chalk.green(`loaded`)))
+console.log(chalk.blue(chalk.bold(`System`)), (chalk.white(`>>`)), chalk.red(`Versão ${require(`${process.cwd()}/package.json`).version}`), (chalk.green(`carregada`)))
 console.log(`\u001b[0m`);
 
 manager.on('shardCreate', shard => {
@@ -65,8 +65,8 @@ manager.on('shardCreate', shard => {
                 inline: true
             },
             {
-                name: `📃┆Status`,
-                value: `Inicializando...`,
+                name: `📃┆State`,
+                value: `Iniciando...`,
                 inline: true
             }
         ])
@@ -76,7 +76,7 @@ manager.on('shardCreate', shard => {
         embeds: [embed],
     });
 
-    console.log(chalk.blue(chalk.bold(`System`)), (chalk.white(`>>`)), (chalk.green(`Starting`)), chalk.red(`Shard #${shard.id + 1}`), (chalk.white(`...`)))
+    console.log(chalk.blue(chalk.bold(`System`)), (chalk.white(`>>`)), (chalk.green(`Iniciando`)), chalk.red(`Shard #${shard.id + 1}`), (chalk.white(`...`)))
     console.log(`\u001b[0m`);
 
     shard.on("death", (process) => {
@@ -96,7 +96,7 @@ manager.on('shardCreate', shard => {
 
         if (process.exitCode === null) {
             const embed = new Discord.EmbedBuilder()
-                .setTitle(`🚨・Shard ${shard.id + 1}/${manager.totalShards} exited with NULL error code!`)
+                .setTitle(`🚨・Shard ${shard.id + 1}/${manager.totalShards} saiu com código de erro NULL!`)
                 .setFields([
                     {
                         name: "PID",
@@ -117,7 +117,7 @@ manager.on('shardCreate', shard => {
 
     shard.on("shardDisconnect", (event) => {
         const embed = new Discord.EmbedBuilder()
-            .setTitle(`🚨・Shard ${shard.id + 1}/${manager.totalShards} disconnected`)
+            .setTitle(`🚨・Shard ${shard.id + 1}/${manager.totalShards} desconectada`)
             .setDescription("Dumping socket close event...")
             .setColor(config.colors.normal)
         shardLogs.send({
@@ -128,7 +128,7 @@ manager.on('shardCreate', shard => {
 
     shard.on("shardReconnecting", () => {
         const embed = new Discord.EmbedBuilder()
-            .setTitle(`🚨・Reconnecting shard ${shard.id + 1}/${manager.totalShards}`)
+            .setTitle(`🚨・Reconectando shard ${shard.id + 1}/${manager.totalShards}`)
             .setColor(config.colors.normal)
         shardLogs.send({
             username: 'Bot Logs',
@@ -153,9 +153,9 @@ const warnLogs = new Discord.WebhookClient({
 });
 
 process.on('unhandledRejection', error => {
-    console.error('Unhandled promise rejection:', error);
-    if (error) if (error.length > 950) error = error.slice(0, 950) + '... view console for details';
-    if (error.stack) if (error.stack.length > 950) error.stack = error.stack.slice(0, 950) + '... view console for details';
+    console.error('Erro desconhecido:', error);
+    if (error) if (error.length > 950) error = error.slice(0, 950) + '... veja o console para mais detalhes';
+    if (error.stack) if (error.stack.length > 950) error.stack = error.stack.slice(0, 950) + '... veja o console para mais detalhes';
     if (!error.stack) return
     const embed = new Discord.EmbedBuilder()
         .setTitle(`🚨・Unhandled promise rejection`)
@@ -173,7 +173,7 @@ process.on('unhandledRejection', error => {
         username: 'Bot Logs',
         embeds: [embed],
     }).catch(() => {
-        console.log('Error sending unhandled promise rejection to webhook')
+        console.log('Falha ao enviar o erro desconhecido sobre alguma conexão para a WebHook')
         console.log(error)
     })
 });
@@ -181,10 +181,10 @@ process.on('unhandledRejection', error => {
 process.on('warning', warn => {
     console.warn("Warning:", warn);
     const embed = new Discord.EmbedBuilder()
-        .setTitle(`🚨・New warning found`)
+        .setTitle(`🚨・Novo aviso foi encontrado!`)
         .addFields([
             {
-                name: `Warn`,
+                name: `Aviso`,
                 value: `\`\`\`${warn}\`\`\``,
             },
         ])
@@ -192,7 +192,7 @@ process.on('warning', warn => {
         username: 'Bot Logs',
         embeds: [embed],
     }).catch(() => {
-        console.log('Error sending warning to webhook')
+        console.log('Falha ao enviar o erro para a WebHook')
         console.log(warn)
     })
 });

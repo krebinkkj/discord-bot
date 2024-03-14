@@ -7,7 +7,7 @@
  */
 const chalk = require('chalk');
 if (!process.argv[2]) {
-    console.log(chalk.red(`[ERROR]`), chalk.white(`>>`), chalk.red(`Developer Badge`), chalk.white(`>>`), chalk.red(`Por favor declare um id valido!`))
+    console.log(chalk.red(`[ERROR]`), chalk.white(`>>`), chalk.red(`Developer Badge`), chalk.white(`>>`), chalk.red(`Por favor especifique o id de um membro`))
     process.exit(1);
 }
 require('dotenv').config('./.env');
@@ -22,9 +22,9 @@ mongoose.connect(process.env.MONGO_TOKEN, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {
-    console.log(chalk.green(`[SUCCESS]`), chalk.white(`>>`), chalk.green(`Developer Badge`), chalk.white(`>>`), chalk.green(`Connected to the database!`))
+    console.log(chalk.green(`[SUCCESSO]`), chalk.white(`>>`), chalk.green(`Developer Badge`), chalk.white(`>>`), chalk.green(`conectado a database!`))
 }).catch((err) => {
-    console.log(chalk.red(`[ERROR]`), chalk.white(`>>`), chalk.red(`Developer Badge`), chalk.white(`>>`), chalk.red(`Failed to connect to the database!`))
+    console.log(chalk.red(`[ERROR]`), chalk.white(`>>`), chalk.red(`Developer Badge`), chalk.white(`>>`), chalk.red(`Falha ao conectar a database`))
     console.log(err)
     process.exit(1);
 });
@@ -46,7 +46,7 @@ model.findOne({
         } catch (err) {
             console.log(err)
         }
-        console.log((chalk.white(`>>`)), chalk.red(`Developer Badge`), chalk.green(`has been added to the user!`))
+        console.log((chalk.white(`>>`)), chalk.red(`Developer Badge`), chalk.green(`ja foi adicionada ao usuario!`))
         mongoose.connection.close();
         process.exit(0);
     }
@@ -58,7 +58,7 @@ model.findOne({
         } catch (err) {
             console.log(err)
         }
-        console.log((chalk.white(`>>`)), chalk.red(`Developer Badge`), chalk.green(`has been added to the user!`))
+        console.log((chalk.white(`>>`)), chalk.red(`Developer Badge`), chalk.green(`ja foi adicionada ao usuario!`))
         mongoose.connection.close();
         process.exit(0);
     }
