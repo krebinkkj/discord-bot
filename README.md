@@ -64,10 +64,10 @@ Se você gostou deste repositório, fique à vontade para deixar uma ⭐ para me
 - Discord Token. Consiga em [Discord Developers Portal](https://discord.com/developers/applications)
 - Mongo Database URL. Consiga em [MongoDB](https://cloud.mongodb.com/v2/635277bf9f5c7b5620db28a4#clusters)
 - Giphy API Token. Consiga em [Giphy Developers Portal](https://developers.giphy.com/)
-- OpenAI API Key `para chatbot`. Get it from [OpenAi Developers Portal](https://beta.openai.com/account/api-keys)
+- OpenAI API Key `para chatbot`. Consiga em [OpenAi Developers Portal](https://beta.openai.com/account/api-keys)
 - ClientID `Para carregar comandos em barra (SlashCommands).` [Discord Developers Portal](https://discord.com/developers/applications)
-- Spotify client ID `para  suporte com spotify` [Click here to get](https://developer.spotify.com/dashboard/login)
-- Spotify client Secret `para  suporte com spotify` [Click here to get](https://developer.spotify.com/dashboard/login)
+- Spotify client ID `para  suporte com spotify` [Clique para obter](https://developer.spotify.com/dashboard/login)
+- Spotify client Secret `para  suporte com spotify` [Clique para obter](https://developer.spotify.com/dashboard/login)
 
 ## <img src="https://cdn.discordapp.com/emojis/814216203466965052.png" width="25px" height="25px">》Guia de instalação
 
