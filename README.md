@@ -26,7 +26,7 @@
 
 <!-- NOTICE -->
 
-### <img src="https://cdn.discordapp.com/emojis/1055803759831294013.png" width="20px" height="20px"> 》Notice 
+### <img src="https://cdn.discordapp.com/emojis/1055803759831294013.png" width="20px" height="20px"> 》Noticia 
 > Você não pode reivindicar isso como seu! A fonte original foi criada por[Dotwood Media](https://github.com/DotwoodMedia) e [Graphix Development](https://github.com/GraphixDevelopment). A fonte foi modificada e atualizada por mim (Krebinkkj)
 
 > Bot baseado em [Discord.js](https://github.com/Discordjs/discordjs)
@@ -34,9 +34,9 @@ Se você gostou deste repositório, fique à vontade para deixar uma ⭐ para me
 
 <!-- ABOUT THE PROJECT -->
 
-## <img src="https://cdn.discordapp.com/emojis/859424401186095114.png" width="20px" height="20px">》Description 
+## <img src="https://cdn.discordapp.com/emojis/859424401186095114.png" width="20px" height="20px">》Descrição
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=corwindev&repo=Discord-bot&theme=tokyonight)](https://github.com/Krebinkkj/Discord-bot)
-## <img src="https://cdn.discordapp.com/emojis/852881450667081728.gif" width="20px" height="20px">》Feature
+## <img src="https://cdn.discordapp.com/emojis/852881450667081728.gif" width="20px" height="20px">》Recursos
 - [x] Slash Commands 
 - [x] Upto date with Discord.js v14
 - [x] Automod
@@ -52,8 +52,6 @@ Se você gostou deste repositório, fique à vontade para deixar uma ⭐ para me
 - [x] Customizavel
 - [x] E muito mais
 - [x] Não quer hospedar você mesmo? [Use a versão publica](https://discord.com/api/oauth2/authorize?client_id=860390761307439114&permissions=8&scope=bot%20applications.commands)
-## <img src="https://cdn.discordapp.com/emojis/1028680849195020308.png" width="25px" height="25px">》Screenshots
-<br />
 <p align="center">
   <a href="https://github.com/Krebinkkj/discord-bot">
     <img src="https://cdn.discordapp.com/attachments/778665159316209748/1055832339328024666/207117434-d98356b1-bf19-418e-9e12-0ef83e0d9a21.png">
@@ -71,7 +69,7 @@ Se você gostou deste repositório, fique à vontade para deixar uma ⭐ para me
 - Spotify client ID `para  suporte com spotify` [Click here to get](https://developer.spotify.com/dashboard/login)
 - Spotify client Secret `para  suporte com spotify` [Click here to get](https://developer.spotify.com/dashboard/login)
 
-## <img src="https://cdn.discordapp.com/emojis/814216203466965052.png" width="25px" height="25px">》Installation Guide
+## <img src="https://cdn.discordapp.com/emojis/814216203466965052.png" width="25px" height="25px">》Guia de instalação
 
 ### <img src="https://cdn.discordapp.com/emojis/1028680849195020308.png" width="15px" height="15px"> Installing via [NPM](https://www.npmjs.com/)
 Clone o repositório executando
