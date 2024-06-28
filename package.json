@@ -57,7 +57,7 @@
     "jsdom": "^24.0.0",
     "libsodium-wrappers": "^0.7.10",
     "lyrics-finder": "^21.7.0",
-    "mathjs": "^12.4.2",
+    "mathjs": "^13.0.1",
     "moment": "^2.29.4",
     "moment-duration-format": "^2.3.2",
     "moment-timezone": "^0.5.39",
