@@ -5,7 +5,7 @@ const { getLanguagesFromEmoji } = require("country-emoji-languages");
 const { translate } = require("@helpers/HttpUtils");
 const { timeformat } = require("@helpers/Utils");
 
-const TRANSLATE_COOLDOWN = 120;
+const TRANSLATE_COOLDOWN = 30;
 const cooldownCache = new Map();
 
 /**
@@ -32,7 +32,7 @@ async function handleFlagReaction(emoji, message, user) {
   // cooldown check
   const remaining = getTranslationCooldown(user);
   if (remaining > 0) {
-    return message.channel.safeSend(`${user} You must wait ${timeformat(remaining)} before translating again!`, 5);
+    return message.channel.safeSend(`${user} Você precisa esperar ${timeformat(remaining)} para traduzir novamente!`, 5);
   }
 
   if (await isTranslated(message, emoji)) return;
@@ -44,8 +44,8 @@ async function handleFlagReaction(emoji, message, user) {
   if (targetCodes.length === 0) return;
 
   // remove english if there are other language codes
-  if (targetCodes.length > 1 && targetCodes.includes("en")) {
-    targetCodes.splice(targetCodes.indexOf("en"), 1);
+  if (targetCodes.length > 1 && targetCodes.includes("pt")) {
+    targetCodes.splice(targetCodes.indexOf("pt"), 1);
   }
 
   let src;
@@ -55,7 +55,7 @@ async function handleFlagReaction(emoji, message, user) {
     const response = await translate(message.content, tc);
     if (!response) continue;
     src = response.inputLang;
-    desc += `**${response.outputLang}:**\n${response.output}\n\n`;
+    desc += `**Para** **${response.outputLang}:**\n${response.output}`;
     translated += 1;
   }
 
@@ -64,17 +64,17 @@ async function handleFlagReaction(emoji, message, user) {
   const btnRow = new ActionRowBuilder().addComponents(
     new ButtonBuilder({
       url: message.url,
-      label: "Original Message",
+      label: "Mensagem original",
       style: ButtonStyle.Link,
     })
   );
 
   const embed = new EmbedBuilder()
     .setColor(message.client.config.EMBED_COLORS.BOT_EMBED)
-    .setAuthor({ name: `Translation from ${src}` })
+    .setAuthor({ name: `Tradução de ${src}` })
     .setDescription(desc)
     .setFooter({
-      text: `Requested by ${user.username}`,
+      text: `Pedida por ${user.username}`,
       iconURL: user.displayAvatarURL(),
     });
 

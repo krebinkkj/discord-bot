@@ -7,7 +7,7 @@ module.exports = {
     name: "counter",
     description: "configurar canal de contador no servidor.",
     category: "ADMIN",
-    userPermissions: ["ManageGuilds"],
+    userPermissions: ["ManageGuild"],
     botPermissions: ["ManageChannels"],
     command: {
         enabled: true,
@@ -19,7 +19,7 @@ module.exports = {
         ephemeral: true,
         options: [
             {
-                name: "type",
+                name: "tipo",
                 description: "tipo de canal contador",
                 type: ApplicationCommandOptionType.String,
                 required: true,
@@ -39,7 +39,7 @@ module.exports = {
                 ],
             },
             {
-                name: "name",
+                name: "nome",
                 description: "nome do canal contador",
                 type: ApplicationCommandOptionType.String,
                 required: true,
@@ -80,8 +80,8 @@ async function setupCounter(guild, type, name, settings) {
 
     const stats = await guild.fetchMemberStats();
     if (type === "USERS") channelName += ` : ${stats[0]}`;
-    else if (type === "MEMBERS") channelName ` : ${stats[2]}`;
-    else if (type === "BOTS") channelName ` : ${stats[1]}`;
+    else if (type === "MEMBERS") channelName += ` : ${stats[2]}`;
+    else if (type === "BOTS") channelName += ` : ${stats[1]}`;
 
     const vc = await guild.channels.create({
         name: channelName,

@@ -26,7 +26,7 @@ async function updateCounterChannels(client) {
         if (config.counter_type.toUpperCase() === "MEMBERS") channelName = `${config.name} : ${members}`;
         if (config.counter_type.toUpperCase() === "BOTS") channelName = `${config.name} : ${bots}`;
 
-        if (vc.manageable) vc.setName(channelName).catch((err) => vc.client.logger.log("Set Name error: ", err));
+        if (vc.manageable) vc.setName(channelName).catch((err) => vc.client.logger.log("Erro ao definir nome: ", err));
       }
     } catch (ex) {
       client.logger.error(`Erro ao atualizar canais de contador para ${guildId}`, ex);

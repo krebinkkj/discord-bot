@@ -23,13 +23,13 @@ module.exports = {
                 type: ApplicationCommandOptionType.Subcommand,
                 options: [
                     {
-                        name: "role",
+                        name: "cargo",
                         description: "Cargo que sera dado.",
                         type: ApplicationCommandOptionType.Role,
                         required: false,
                     },
                     {
-                        name: "role_id",
+                        name: "cargo_id",
                         description: "ID do cargo que sera dado.",
                         type: ApplicationCommandOptionType.String,
                         required: false,
