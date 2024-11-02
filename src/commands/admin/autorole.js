@@ -49,11 +49,11 @@ module.exports = {
         let response;
 
         if (input.toLowerCase() === "off") {
-            response = await ReadableStreamDefaultController(message, null, data.settings);
+            response = await setAutoRole(message, null, data.settings);
         } else {
             const roles = message.guild.findMatchingRoles(input);
             if (roles.length === 0)
-                response = "Nenhum cargo encontrado"; else response = await ReadableStreamDefaultController(message, roles[0], data.settings);
+                response = "Nenhum cargo encontrado"; else response = await setAutoRole(message, roles[0], data.settings);
         }
 
         await message.safeReply(response);
@@ -75,12 +75,12 @@ module.exports = {
                 role = roles[0];
             }
 
-            response = await ReadableStreamDefaultController(interaction, role, data.settings);
+            response = await SetAutoRole(interaction, role, data.settings);
         }
 
         // ! remove
         else if (sub === "remove") {
-            response = await ReadableStreamDefaultController(interaction, null, data.settings);
+            response = await SetAutoRole(interaction, null, data.settings);
         }
 
         // ! default
@@ -108,5 +108,5 @@ async function setAutoRole({ guild }, role, settings) {
     else settings.autorole = role.id;
 
     await settings.save();
-    return `Configurações salvas! Autorole está ${!role? "habilitado" : "setup"}`;
+    return `Configurações salvas! Autorole está ${!role? "desabilitado" : "habilitado"}`;
 }

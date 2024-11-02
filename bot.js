@@ -28,14 +28,14 @@ process.on("unhandledRejection", (err) => client.logger.error(`Unhandled excepti
 
   // start the dashboard
   if (client.config.DASHBOARD.enabled) {
-    client.logger.log("Launching dashboard");
+    client.logger.log("Carregando o dashboard");
     try {
       const { launch } = require("@root/dashboard/app");
 
       // let the dashboard initialize the database
       await launch(client);
     } catch (ex) {
-      client.logger.error("Failed to launch dashboard", ex);
+      client.logger.error("Falha ao iniciar o dashboard", ex);
     }
   } else {
     // initialize the database

@@ -116,7 +116,7 @@ const {
         })
       );
   
-      this.logger.log(`Loaded ${success + failed} events. Success (${success}) Failed (${failed})`);
+      this.logger.log(`${success + failed} Eventos carregados. Sucesso: (${success}) Falha: (${failed})`);
     }
   
     /**
@@ -136,33 +136,33 @@ const {
     loadCommand(cmd) {
       // Check if category is disabled
       if (cmd.category && CommandCategory[cmd.category]?.enabled === false) {
-        this.logger.debug(`Skipping Command ${cmd.name}. Category ${cmd.category} is disabled`);
+        this.logger.debug(`Ignorando comando ${cmd.name}. Categoria ${cmd.category} está desativada`);
         return;
       }
       // Prefix Command
       if (cmd.command?.enabled) {
         const index = this.commands.length;
         if (this.commandIndex.has(cmd.name)) {
-          throw new Error(`Command ${cmd.name} already registered`);
+          throw new Error(`Comando ${cmd.name} ja foi registrado`);
         }
         if (Array.isArray(cmd.command.aliases)) {
           cmd.command.aliases.forEach((alias) => {
-            if (this.commandIndex.has(alias)) throw new Error(`Alias ${alias} already registered`);
+            if (this.commandIndex.has(alias)) throw new Error(`Alias ${alias} já registrada`);
             this.commandIndex.set(alias.toLowerCase(), index);
           });
         }
         this.commandIndex.set(cmd.name.toLowerCase(), index);
         this.commands.push(cmd);
       } else {
-        this.logger.debug(`Skipping command ${cmd.name}. Disabled!`);
+        this.logger.debug(`Ignorando comando ${cmd.name}. desativado!`);
       }
   
       // Slash Command
       if (cmd.slashCommand?.enabled) {
-        if (this.slashCommands.has(cmd.name)) throw new Error(`Slash Command ${cmd.name} already registered`);
+        if (this.slashCommands.has(cmd.name)) throw new Error(`Slash Command ${cmd.name} já registrado`);
         this.slashCommands.set(cmd.name, cmd);
       } else {
-        this.logger.debug(`Skipping slash command ${cmd.name}. Disabled!`);
+        this.logger.debug(`Ignorando slash command ${cmd.name}. Desativado!`);
       }
     }
   
@@ -171,7 +171,7 @@ const {
      * @param {string} directory
      */
     loadCommands(directory) {
-      this.logger.log(`Loading commands...`);
+      this.logger.log(`Carregando comandos...`);
       const files = recursiveReadDirSync(directory);
       for (const file of files) {
         try {
@@ -180,13 +180,13 @@ const {
           validateCommand(cmd);
           this.loadCommand(cmd);
         } catch (ex) {
-          this.logger.error(`Failed to load ${file} Reason: ${ex.message}`);
+          this.logger.error(`Falha ao carregar ${file} Motivo: ${ex.message}`);
         }
       }
   
-      this.logger.success(`Loaded ${this.commands.length} commands`);
-      this.logger.success(`Loaded ${this.slashCommands.size} slash commands`);
-      if (this.slashCommands.size > 100) throw new Error("A maximum of 100 slash commands can be enabled");
+      this.logger.success(`${this.commands.length} comandos carregados`);
+      this.logger.success(` ${this.slashCommands.size} slash commands carregados`);
+      if (this.slashCommands.size > 100) throw new Error("Um máximo de 100 slash commands podem ser habilitados");
     }
   
     /**
@@ -194,29 +194,29 @@ const {
      * @param {string} directory
      */
     loadContexts(directory) {
-      this.logger.log(`Loading contexts...`);
+      this.logger.log(`Carregando contextos...`);
       const files = recursiveReadDirSync(directory);
       for (const file of files) {
         try {
           const ctx = require(file);
           if (typeof ctx !== "object") continue;
           validateContext(ctx);
-          if (!ctx.enabled) return this.logger.debug(`Skipping context ${ctx.name}. Disabled!`);
-          if (this.contextMenus.has(ctx.name)) throw new Error(`Context already exists with that name`);
+          if (!ctx.enabled) return this.logger.debug(`Ignorando contexto ${ctx.name}. Desativado!`);
+          if (this.contextMenus.has(ctx.name)) throw new Error(`Já existe um contexto com esse nome`);
           this.contextMenus.set(ctx.name, ctx);
         } catch (ex) {
-          this.logger.error(`Failed to load ${file} Reason: ${ex.message}`);
+          this.logger.error(`Falha ao carregar ${file} Motivo: ${ex.message}`);
         }
       }
   
       const userContexts = this.contextMenus.filter((ctx) => ctx.type === ApplicationCommandType.User).size;
       const messageContexts = this.contextMenus.filter((ctx) => ctx.type === ApplicationCommandType.Message).size;
   
-      if (userContexts > 3) throw new Error("A maximum of 3 USER contexts can be enabled");
-      if (messageContexts > 3) throw new Error("A maximum of 3 MESSAGE contexts can be enabled");
+      if (userContexts > 3) throw new Error("Um máximo de 3 contextos de USUÁRIO podem ser habilitados");
+      if (messageContexts > 3) throw new Error("Um máximo de 3 contextos de MENSAGEM podem ser ativados");
   
-      this.logger.success(`Loaded ${userContexts} USER contexts`);
-      this.logger.success(`Loaded ${messageContexts} MESSAGE contexts`);
+      this.logger.success(` ${userContexts} USER contexts carregados`);
+      this.logger.success(` ${messageContexts} MESSAGE contexts carregados`);
     }
   
     /**
@@ -257,7 +257,7 @@ const {
       else if (guildId && typeof guildId === "string") {
         const guild = this.guilds.cache.get(guildId);
         if (!guild) {
-          this.logger.error(`Failed to register interactions in guild ${guildId}`, new Error("No matching guild"));
+          this.logger.error(`Falha ao registrar interações na guilda ${guildId}`, new Error("No matching guild"));
           return;
         }
         await guild.commands.set(toRegister);
@@ -265,10 +265,10 @@ const {
   
       // Throw an error
       else {
-        throw new Error("Did you provide a valid guildId to register interactions");
+        throw new Error("Você forneceu um guildId válido para registrar interações?");
       }
   
-      this.logger.success("Successfully registered interactions");
+      this.logger.success("Interações registradas com sucesso");
     }
   
     /**

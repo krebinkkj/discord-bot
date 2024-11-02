@@ -6,32 +6,32 @@ const { ApplicationCommandType } = require("discord.js");
 
 module.exports = class Validator {
   static validateConfiguration() {
-    log("Validating config file and environment variables");
+    log("Validando arquivo de configuração e variáveis ​​de ambiente");
 
     // Bot Token
     if (!process.env.BOT_TOKEN) {
-      error("env: BOT_TOKEN cannot be empty");
+      error("env: BOT_TOKEN não pode ficar vazio");
       process.exit(1);
     }
 
     // Validate Database Config
     if (!process.env.MONGO_CONNECTION) {
-      error("env: MONGO_CONNECTION cannot be empty");
+      error("env: MONGO_CONNECTION não pode ficar vazio");
       process.exit(1);
     }
 
     // Validate Dashboard Config
     if (config.DASHBOARD.enabled) {
       if (!process.env.BOT_SECRET) {
-        error("env: BOT_SECRET cannot be empty");
+        error("env: BOT_SECRET não pode ficar vazio");
         process.exit(1);
       }
       if (!process.env.SESSION_PASSWORD) {
-        error("env: SESSION_PASSWORD cannot be empty");
+        error("env: SESSION_PASSWORD não pode ficar vazio");
         process.exit(1);
       }
       if (!config.DASHBOARD.baseURL || !config.DASHBOARD.failureURL || !config.DASHBOARD.port) {
-        error("config.js: DASHBOARD details cannot be empty");
+        error("config.js: DASHBOARD não pode ficar vazio");
         process.exit(1);
       }
     }
@@ -45,21 +45,21 @@ module.exports = class Validator {
     // Music
     if (config.MUSIC.ENABLED) {
       if (!process.env.SPOTIFY_CLIENT_ID || !process.env.SPOTIFY_CLIENT_SECRET) {
-        warn("env: SPOTIFY_CLIENT_ID or SPOTIFY_CLIENT_SECRET are missing. Spotify music links won't work");
+        warn("env: SPOTIFY_CLIENT_ID or SPOTIFY_CLIENT_SECRET está faltando. Spotify music links não irá funcionar");
       }
       if (config.MUSIC.LAVALINK_NODES.length == 0) {
-        warn("config.js: There must be at least one node for Lavalink");
+        warn("config.js: Deve haver pelo menos um node para Lavalink");
       }
       if (!["YT", "YTM", "SC"].includes(config.MUSIC.DEFAULT_SOURCE)) {
-        warn("config.js: MUSIC.DEFAULT_SOURCE must be either YT, YTM or SC");
+        warn("config.js: MUSIC.DEFAULT_SOURCE tem que ser  YT, YTM ou SC");
       }
     }
 
     // Warnings
-    if (config.OWNER_IDS.length === 0) warn("config.js: OWNER_IDS are empty");
-    if (!config.SUPPORT_SERVER) warn("config.js: SUPPORT_SERVER is not provided");
-    if (!process.env.WEATHERSTACK_KEY) warn("env: WEATHERSTACK_KEY is missing. Weather command won't work");
-    if (!process.env.STRANGE_API_KEY) warn("env: STRANGE_API_KEY is missing. Image commands won't work");
+    if (config.OWNER_IDS.length === 0) warn("config.js: OWNER_IDS está vazio");
+    if (!config.SUPPORT_SERVER) warn("config.js: SUPPORT_SERVER não foi providenciado");
+    if (!process.env.WEATHERSTACK_KEY) warn("env: WEATHERSTACK_KEY está faltando. O comando de clima não irá funcionar");
+    if (!process.env.STRANGE_API_KEY) warn("env: STRANGE_API_KEY está faltando. Os comandos de imagens não irão funcionar");
   }
 
   /**
