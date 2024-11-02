@@ -1,5 +1,5 @@
 const { description } = require('@root/src/structures/Command');
-const { ApplicationCommandOptionType } = require('discord.js');
+const { ApplicationCommandOptionType, ApplicationCommand } = require('discord.js');
 
 /**
  * @type {import("@structures/Command")}
