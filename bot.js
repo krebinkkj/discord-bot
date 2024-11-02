@@ -41,7 +41,7 @@ process.on("unhandledRejection", (err) => client.logger.error(`Unhandled excepti
     // initialize the database
     await initializeMongoose();
   }
-
+// beta
   // start the client
   await client.login(process.env.BOT_TOKEN);
 })();
