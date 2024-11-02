@@ -257,7 +257,7 @@ const {
       else if (guildId && typeof guildId === "string") {
         const guild = this.guilds.cache.get(guildId);
         if (!guild) {
-          this.logger.error(`Falha ao registrar interações na guilda ${guildId}`, new Error("No matching guild"));
+          this.logger.error(`Falha ao registrar interações na guilda ${guildId}`, new Error("Nenhum servidor com este ID."));
           return;
         }
         await guild.commands.set(toRegister);
