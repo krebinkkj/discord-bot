@@ -1,17 +1,19 @@
 const { ApplicationCommandOptionType, ChannelType, EmbedBuilder } = require("discord.js");
 const { EMBED_COLORS } = require("@root/config");
+const config = require("@root/config");
+const { getSettings } = require("@root/src/database/schemas/Guild");
 
 /**
  * @type {import("@structures/Command")}
  */
 module.exports = {
   name: "chatbot",
-  description: "Setup chatbot channel",
+  description: "Configure canal do chatbot",
   category: "UTILIDADE",
   userPermissions: ["ManageGuild"],
   command: {
     enabled: true,
-    usage: "set [channel ID] or chatbot delete",
+    usage: `set [Id do canal] ou chatbot delete`,
     minArgsCount: 1,
   },
   slashCommand: {
@@ -20,12 +22,12 @@ module.exports = {
     options: [
       {
         name: "set",
-        description: "Setup the chatbot",
+        description: "Configure o chatbot",
         type: ApplicationCommandOptionType.Subcommand,
         options: [
           {
             name: "channel",
-            description: "Channels to send mod logs",
+            description: "Canal para acionar o chatbot",
             required: false,
             type: ApplicationCommandOptionType.Channel,
             channelTypes: [ChannelType.GuildText],
@@ -34,7 +36,7 @@ module.exports = {
       },
       {
         name: "delete",
-        description: "Delete chatbot channel",
+        description: "Excluir canal do chatbot",
         type: ApplicationCommandOptionType.Subcommand,
       },
     ],
@@ -61,7 +63,7 @@ async function chatbot({ client, guildId, options, channel }, input, data) {
   if (input !== "set" && input !== "delete") {
     const embed = new EmbedBuilder()
       .setColor(EMBED_COLORS.ERROR)
-      .setDescription("Invalid option. Please use `set` or `delete`.");
+      .setDescription("Opção inválida. Por favor use `set` ou `delete`.");
 
     return { embeds: [embed] };
   }
@@ -78,13 +80,13 @@ async function chatbot({ client, guildId, options, channel }, input, data) {
 
         const embed = new EmbedBuilder()
           .setColor(EMBED_COLORS.SUCCESS)
-          .setDescription(`Chatbot channel set to ${targetChannel}.`);
+          .setDescription(`Canal do chatbot definido para ${targetChannel}.`);
 
         return { embeds: [embed] };
       } else {
         const embed = new EmbedBuilder()
           .setColor(EMBED_COLORS.ERROR)
-          .setDescription(`Chatbot is already set in this guild. Current channel: <#${data.settings.chatbotId}>`);
+          .setDescription(`O Chatbot já está configurado neste servidor. Canal atual: <#${data.settings.chatbotId}>`);
 
         return { embeds: [embed] };
       }
@@ -92,7 +94,7 @@ async function chatbot({ client, guildId, options, channel }, input, data) {
       if (!data.settings.chatbotId) {
         const embed = new EmbedBuilder()
           .setColor(EMBED_COLORS.ERROR)
-          .setDescription("No chatbot setup found in this guild.");
+          .setDescription("Nenhuma configuração de chatbot encontrada neste servidor");
 
         return { embeds: [embed] };
       }
@@ -102,14 +104,14 @@ async function chatbot({ client, guildId, options, channel }, input, data) {
 
       const embed = new EmbedBuilder()
         .setColor(EMBED_COLORS.SUCCESS)
-        .setDescription("Chatbot channel deleted successfully.");
+        .setDescription("O canal do chatbot foi apagado com sucesso.");
 
       return { embeds: [embed] };
     }
   } catch (error) {
     const embed = new EmbedBuilder()
       .setColor(EMBED_COLORS.ERROR)
-      .setDescription(`Failed to perform the operation. Error: ${error.message}`);
+      .setDescription(`Falha ao executar a operação. Erro: ${error.message}`);
 
     return { embeds: [embed] };
   }

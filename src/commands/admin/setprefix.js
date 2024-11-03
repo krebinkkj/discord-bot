@@ -39,7 +39,7 @@ module.exports = {
 };
 
 async function setNewPrefix(newPrefix, settings) {
-    if (newPrefix.length > 1) return "O novo prefixo não pode passar de **2** caracteres";
+    if (newPrefix.length > 2) return "O novo prefixo não pode passar de **2** caracteres";
     settings.prefix = newPrefix;
     await settings.save();
 
