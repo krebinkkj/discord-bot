@@ -24,7 +24,7 @@ module.exports = {
       MEMBERS: 10000,
     },
     MESSAGES: {
-      API_ERROR: "Unexpected Backend Error! Try again later or contact support server",
+      API_ERROR: "Erro inesperado de back-end! Tente novamente mais tarde ou entre em contato com o servidor de suporte",
     },
   
     // PLUGINS
@@ -43,8 +43,9 @@ module.exports = {
     },
   
     ECONOMY: {
-      ENABLED: false,
+      ENABLED: true,
       CURRENCY: "₪",
+      HOURLY_COINS: 500,
       DAILY_COINS: 100, 
       MIN_BEG_AMOUNT: 100, 
       MAX_BEG_AMOUNT: 2500, 

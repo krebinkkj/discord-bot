@@ -32,7 +32,7 @@ const {
       options: [
         {
           name: "canal",
-          description: "canal para enviar embed",
+          description: "canal para enviar a mensagem embed",
           type: ApplicationCommandOptionType.Channel,
           channelTypes: [ChannelType.GuildText],
           required: true,
@@ -137,7 +137,7 @@ const {
       })
       .catch((ex) => {});
   
-    if (!modal) return sentMsg.edit({ content: "Nenhuma resposta recebida, cancelando a configuração", components: [] });
+    if (!modal) return sentMsg.edit({ content: "Nenhuma resposta recebida, cancelando a configuração.", components: [] });
   
     modal.reply({ content: "Embed enviado", ephemeral: true }).catch((ex) => {});
   
@@ -228,7 +228,7 @@ const {
   
         if (inline === "true") inline = true;
         else if (inline === "false") inline = false;
-        else inline = true; // padrão para true
+        else inline = true; // padrão = true
   
         const fields = embed.data.fields || [];
         fields.push({ name, value, inline });
