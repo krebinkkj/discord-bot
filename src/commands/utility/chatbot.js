@@ -1,7 +1,6 @@
 const { ApplicationCommandOptionType, ChannelType, EmbedBuilder } = require("discord.js");
 const { EMBED_COLORS } = require("@root/config");
-const config = require("@root/config");
-const { getSettings } = require("@root/src/database/schemas/Guild");
+
 
 /**
  * @type {import("@structures/Command")}
@@ -13,7 +12,7 @@ module.exports = {
   userPermissions: ["ManageGuild"],
   command: {
     enabled: true,
-    usage: `set [Id do canal] ou chatbot delete`,
+    usage: `set [#canal] ou chatbot delete`,
     minArgsCount: 1,
   },
   slashCommand: {

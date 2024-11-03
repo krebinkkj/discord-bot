@@ -19,7 +19,7 @@ module.exports = {
     enabled: true,
     options: [
       {
-        name: "content",
+        name: "conteudo",
         description: "texto ou conteúdo para gerar um QR Code",
         type: ApplicationCommandOptionType.String,
         required: true,
