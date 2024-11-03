@@ -45,6 +45,7 @@ module.exports = {
     ECONOMY: {
       ENABLED: true,
       CURRENCY: "₪",
+      HOURLY_COINS: 500,
       DAILY_COINS: 100, 
       MIN_BEG_AMOUNT: 100, 
       MAX_BEG_AMOUNT: 2500, 
