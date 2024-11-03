@@ -24,7 +24,7 @@ module.exports = {
     emoji: "🪙",
   },
   DIVERSÃO: {
-    name: "Fun",
+    name: "Diversão",
     image: "https://icons.iconarchive.com/icons/flameia/aqua-smiles/128/make-fun-icon.png",
     emoji: "😂",
   },
@@ -47,7 +47,7 @@ module.exports = {
     emoji: "📨",
   },
   INFORMAÇÃO: {
-    name: "INFORMATION",
+    name: "Informação",
     image: "https://icons.iconarchive.com/icons/graphicloads/100-flat/128/information-icon.png",
     emoji: "🪧",
   },

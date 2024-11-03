@@ -43,7 +43,7 @@ module.exports = {
     },
   
     ECONOMY: {
-      ENABLED: false,
+      ENABLED: true,
       CURRENCY: "₪",
       DAILY_COINS: 100, 
       MIN_BEG_AMOUNT: 100, 
