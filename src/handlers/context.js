@@ -24,7 +24,7 @@ module.exports = {
     if (interaction.member && context.userPermissions && context.userPermissions?.length > 0) {
       if (!interaction.member.permissions.has(context.userPermissions)) {
         return interaction.reply({
-          content: `Você precisa ${parsePermissions(context.userPermissions)} para esse comando`,
+          content: `Você precisa da permissão ${context.userPermissions} para usar esse comando`,
           ephemeral: true,
         });
       }

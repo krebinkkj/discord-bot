@@ -1,5 +1,5 @@
 module.exports = {
-    OWNER_IDS: [""], 
+    OWNER_IDS: ["1041878326169587732", "1156359899157110884"], 
     SUPPORT_SERVER: "1272288732862484510",
     PREFIX_COMMANDS: {
       ENABLED: true, 
@@ -104,7 +104,7 @@ module.exports = {
     },
   
     PRESENCE: {
-      ENABLED: false,
+      ENABLED: true,
       STATUS: "online",
       TYPE: "WATCHING", 
       MESSAGE: "{members} members in {servers} servers", 

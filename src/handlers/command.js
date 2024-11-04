@@ -41,7 +41,7 @@ module.exports = {
     // check user permissions
     if (cmd.userPermissions && cmd.userPermissions?.length > 0) {
       if (!message.channel.permissionsFor(message.member).has(cmd.userPermissions)) {
-        return message.safeReply(`Você precisa ${parsePermissions(cmd.userPermissions)} para esse comando`);
+        return message.safeReply(`Você precisa da permissão ${cmd.userPermissions} para esse comando.`);
       }
     }
 
@@ -107,7 +107,7 @@ module.exports = {
     if (interaction.member && cmd.userPermissions?.length > 0) {
       if (!interaction.member.permissions.has(cmd.userPermissions)) {
         return interaction.reply({
-          content: `Você precisa ${parsePermissions(cmd.userPermissions)} para esse comando`,
+          content: `Você precisa da permissão ${parsePermissions(cmd.userPermissions)} para usar esse comando`,
           ephemeral: true,
         });
       }

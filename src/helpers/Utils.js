@@ -105,7 +105,7 @@ module.exports = class Utils {
    * @param {import("discord.js").PermissionResolvable[]} perms
    */
   static parsePermissions(perms) {
-    const permissionWord = `permission${perms.length > 1 ? "s" : ""}`;
+    const permissionWord = `${perms.length > 1 ? "s" : ""}`;
     return "`" + perms.map((perm) => permissions[perm]).join(", ") + "` " + permissionWord;
   }
 

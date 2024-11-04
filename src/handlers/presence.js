@@ -1,48 +1,81 @@
-const { ActivityType } = require("discord.js");
+const { ActivityType } = require('discord.js')
+const { getPresenceConfig } = require('@schemas/RPC')
 
 /**
  * @param {import('@src/structures').BotClient} client
  */
-function updatePresence(client) {
-  let message = client.config.PRESENCE.MESSAGE;
+async function updatePresence(client) {
+  const config = await getPresenceConfig()
 
-  if (message.includes("{servers}")) {
-    message = message.replaceAll("{servers}", client.guilds.cache.size);
+  if (!config.PRESENCE.ENABLED) {
+    return client.user.setPresence({
+      status: 'invisible',
+      activities: [],
+    })
   }
 
-  if (message.includes("{members}")) {
-    const members = client.guilds.cache.map((g) => g.memberCount).reduce((partial_sum, a) => partial_sum + a, 0);
-    message = message.replaceAll("{members}", members);
+  let message = config.PRESENCE.MESSAGE
+
+  if (message.includes('{servers}')) {
+    message = message.replaceAll('{servers}', client.guilds.cache.size)
   }
 
-  const getType = (type) => {
+  if (message.includes('{members}')) {
+    const members = client.guilds.cache
+      .map(g => g.memberCount)
+      .reduce((partial_sum, a) => partial_sum + a, 0)
+    message = message.replaceAll('{members}', members)
+  }
+
+  const getType = type => {
     switch (type) {
-      case "COMPETING":
-        return ActivityType.Competing;
-
-      case "LISTENING":
-        return ActivityType.Listening;
-
-      case "PLAYING":
-        return ActivityType.Playing;
-
-      case "WATCHING":
-        return ActivityType.Watching;
+      case 'COMPETING':
+        return ActivityType.Competing
+      case 'LISTENING':
+        return ActivityType.Listening
+      case 'PLAYING':
+        return ActivityType.Playing
+      case 'WATCHING':
+        return ActivityType.Watching
+      case 'STREAMING':
+        return ActivityType.Streaming
+      case 'CUSTOM':
+        return ActivityType.Custom
+      default:
+        return ActivityType.Playing
     }
-  };
+  }
 
-  client.user.setPresence({
-    status: client.config.PRESENCE.STATUS,
-    activities: [
-      {
-        name: message,
-        type: getType(client.config.PRESENCE.TYPE),
-      },
-    ],
-  });
+  const activity = {
+    name: message,
+    type: getType(config.PRESENCE.TYPE),
+  }
+
+  // Handle streaming activity type with URL support
+  if (config.PRESENCE.TYPE === 'STREAMING') {
+    activity.url = config.PRESENCE.URL
+  }
+
+  // Handle custom status with emoji and state
+  if (config.PRESENCE.TYPE === 'CUSTOM') {
+    activity.state = config.PRESENCE.MESSAGE
+  }
+
+  await client.user.setPresence({
+    status: config.PRESENCE.STATUS,
+    activities: [activity],
+  })
+
+  // Log the presence update
+  client.logger.log(
+    `Presence Updated: STATUS:${config.PRESENCE.STATUS}, TYPE:${config.PRESENCE.TYPE}`
+  )
 }
 
-module.exports = function handlePresence(client) {
-  updatePresence(client);
-  setInterval(() => updatePresence(client), 10 * 60 * 1000);
-};
+/**
+ * @param {import('@src/structures').BotClient} client
+ */
+module.exports = async function handlePresence(client) {
+  await updatePresence(client)
+  setInterval(() => updatePresence(client), 10 * 60 * 1000)
+}
