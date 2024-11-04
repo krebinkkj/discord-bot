@@ -1,4 +1,4 @@
-const { EmbedBuilder, ApplicationCommandOptionType, ApplicationCommandOptionType } = require("discord.js");
+const { EmbedBuilder, ApplicationCommandOptionType } = require("discord.js");
 const { postToBin } = require("@helpers/HttpUtils");
 
 /**
