@@ -58,7 +58,6 @@ async function getPingData(client) {
         .setThumbnail(client.user.displayAvatarURL({ size: 64 }))
         .setColor(EMBED_COLORS.BOT_EMBED)
         .setTimestamp()
-        .setFooter({ text: `Pingado em` })
         .addFields(
             {
                 name: 'Latencia da websocket',
@@ -69,7 +68,7 @@ async function getPingData(client) {
                 value: `${msgEmoji} \`${ws}ms\``
             },
             {
-                name: `${client.user.username} Uptime`,
+                name: `Uptime`,
                 value: `<:Timer:1302643602110812213> \`${days} dias, ${hours} horas, ${minutes} minutos, ${seconds} segundos\``,
             }
         );

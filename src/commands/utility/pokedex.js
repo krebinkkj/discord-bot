@@ -44,7 +44,7 @@ module.exports = {
 
 async function pokedex(pokemon) {
     const response = await getJson(`https://pokeapi.glitch.me/v1/pokemon/${pokemon}`);
-    if (response.status === 404) return "```O pokemon não foi encontrado```";
+    if (response.status === 404) return "**O pokemon não foi encontrado**";
     if (!response.success) return MESSAGES.API_ERROR;
 
     const json = response.data[0];
