@@ -4,4 +4,4 @@ node_modules/
 *.log
 *.tar.gz
 .env
-discloud.config
+.gitpod.yml

@@ -10,7 +10,7 @@ module.exports = {
     category: "ADMIN",
     command: {
         enabled: true,
-        usage: "<role|off>",
+        usage: "<cargo|off>",
         minArgsCount: 1,
     },
     slashCommand: {

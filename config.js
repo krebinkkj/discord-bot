@@ -1,6 +1,6 @@
 module.exports = {
     OWNER_IDS: [""], 
-    SUPPORT_SERVER: "",
+    SUPPORT_SERVER: "1272288732862484510",
     PREFIX_COMMANDS: {
       ENABLED: true, 
       DEFAULT_PREFIX: "!", 
